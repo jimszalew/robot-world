@@ -43,4 +43,18 @@ class Robot
     Robot.new(robot)
   end
 
+  def self.update(id, params)
+    database.execute("UPDATE robots
+                      SET name = ?,
+                          city = ?,
+                          state = ?,
+                          department = ?
+                      WHERE id = ?;",
+                      params[:name],
+                      params[:city],
+                      params[:state],
+                      params[:department],
+                      id)
+    Robot.find(id)
+  end
 end
