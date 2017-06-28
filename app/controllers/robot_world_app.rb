@@ -37,4 +37,8 @@ class RobotWorldApp < Sinatra::Base
     Robot.update(id.to_i, params[:robot])
     redirect "/robots/#{id}"
   end
+
+  get '/dashboard' do
+   erb :dashboard
+  end
 end
