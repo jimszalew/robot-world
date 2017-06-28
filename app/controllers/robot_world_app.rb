@@ -39,6 +39,11 @@ class RobotWorldApp < Sinatra::Base
   end
 
   get '/dashboard' do
-   erb :dashboard
+    erb :dashboard
+  end
+
+  delete '/robots/:id' do |id|
+    Robot.destroy(id.to_i)
+    redirect '/robots'
   end
 end
