@@ -2,6 +2,7 @@ require_relative '../models/robot.rb'
 
 class RobotWorldApp < Sinatra::Base
   set :root, File.expand_path("..", __dir__)
+  set :method_override, true
 
   get '/' do
     erb :dashboard
@@ -30,5 +31,10 @@ class RobotWorldApp < Sinatra::Base
   get '/robots/:id/edit' do
     @robot = Robot.find(params[:id])
     erb :edit
+  end
+
+  put '/robots/:id' do |id|
+    Robot.update(id.to_i, params[:robot])
+    redirect "/robots/#{id}"
   end
 end
