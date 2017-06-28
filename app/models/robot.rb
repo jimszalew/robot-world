@@ -37,4 +37,10 @@ class Robot
     database
   end
 
+  def self.find(id)
+    self.database
+    robot = database.execute("SELECT * FROM robots WHERE id = ?", id).first
+    Robot.new(robot)
+  end
+
 end
